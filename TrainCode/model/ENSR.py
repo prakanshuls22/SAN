@@ -1104,15 +1104,17 @@ class EfficientNet(nn.Module):
 
 
 class ENSR(nn.Module):
-    def __init__(self):
+    def __init__(self, args, conv=common.default_conv):
         super(ENSR, self).__init__()
-		self.Enet = EfficientNet.from_name('efficientnet-b1')
-		self.bottleneck = nn.Sequential(
+        
+        self.Enet = EfficientNet.from_name('efficientnet-b1')
+        
+        self.bottleneck = nn.Sequential(
             nn.Conv2d(1280, 256, kernel_size=1),
             nn.ReLU(inplace=True)
         )	
 		
-		if args.scale==2:
+        if args.scale==2:
 			# self.dimchange = nn.Sequential(
 			# torch.nn.ConvTranspose2d(n_channels, n_channels/2 , kernel_size=2, stride=2, padding=1, output_padding=0),
 			# nn.ReLU(inplace=True))
