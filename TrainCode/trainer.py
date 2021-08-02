@@ -7,6 +7,7 @@ import utility
 import torch
 from torch.autograd import Variable
 from tqdm import tqdm
+import random
 
 class Trainer():
     def __init__(self, args, loader, my_model, my_loss, ckp):
@@ -43,12 +44,17 @@ class Trainer():
 
         timer_data, timer_model = utility.timer(), utility.timer()
         for batch, (lr, hr, _, idx_scale) in enumerate(self.loader_train):
+            
             lr, hr = self.prepare([lr, hr])
             timer_data.hold()
             timer_model.tic()
 
             self.optimizer.zero_grad()
             sr = self.model(lr, idx_scale)
+            
+            
+            
+            
             loss = self.loss(sr, hr)
             if loss.item() < self.args.skip_threshold * self.error_last:
                 loss.backward()
@@ -86,15 +92,42 @@ class Trainer():
                 self.loader_test.dataset.set_scale(idx_scale)
                 tqdm_test = tqdm(self.loader_test, ncols=80)
                 for idx_img, (lr, hr, filename, _) in enumerate(tqdm_test):
+                    
+
                     filename = filename[0]
                     no_eval = (hr.nelement() == 1)
                     if not no_eval:
                         lr, hr = self.prepare([lr, hr])
                     else:
                         lr = self.prepare([lr])[0]
+                    
+                    #starts here
+                    
+                    lr = lr.permute(0,2,3,1)
+                    hr = hr.permute(0,2,3,1)
+
+                    patch_size_t = 224
+                    scale_test = 2
+                    
+                    
+
+                    lr, hr = self.patch_test(lr,hr,patch_size_t,scale_test)
+
+                    lr = lr.permute(0,3,1,2)
+                    hr = hr.permute(0,3,1,2)
+
+                    #till here
+
 
                     sr = self.model(lr, idx_scale)
+                    
                     sr = utility.quantize(sr, self.args.rgb_range)
+
+                    
+
+                    
+                    
+                    
 
                     save_list = [sr]
                     if not no_eval:
@@ -141,4 +174,18 @@ class Trainer():
         else:
             epoch = self.scheduler.last_epoch + 1
             return epoch >= self.args.epochs
+
+    def patch_test(self, img_in, img_tar, patch_size_t, scale_test):
+        ih, iw = img_in.shape[1:3]
+        
+        p = scale_test
+        tp = p * patch_size_t
+        ip = tp // scale_test
+        ix = random.randrange(0, iw - ip + 1)
+        iy = random.randrange(0, ih - ip + 1)
+        tx, ty = scale_test * ix, scale_test * iy
+        img_in = img_in[:, iy:iy + ip, ix:ix + ip, :]
+        img_tar = img_tar[:, ty:ty + tp, tx:tx + tp, :]
+        
+        return img_in, img_tar
 

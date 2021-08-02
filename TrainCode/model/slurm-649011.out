@@ -1,0 +1,35 @@
+==========================================
+SLURM_CLUSTER_NAME = param-shivay
+SLURM_JOB_ACCOUNT = comp_sci_engg
+SLURM_JOB_ID = 649011
+SLURM_JOB_NAME = SISR_1
+SLURM_JOB_NODELIST = gpu009
+SLURM_JOB_USER = ssrivastava.cse18.iitbhu
+SLURM_JOB_UID = 5516
+SLURM_JOB_PARTITION = gpu
+SLURM_TASK_PID = 145487
+SLURM_SUBMIT_DIR = /scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model
+SLURM_CPUS_ON_NODE = 32
+SLURM_NTASKS = 32
+SLURM_TASK_PID = 145487
+==========================================
+Preparing seperated binary files
+Making model...
+Traceback (most recent call last):
+  File "main.py", line 14, in <module>
+    model = model.Model(args, checkpoint)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/__init__.py", line 27, in __init__
+    self.model = module.make_model(args).to(self.device)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 38, in make_model
+    return ENSR(args)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 1057, in __init__
+    self.Enet = EfficientNet.from_name('efficientnet-b1')
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 962, in from_name
+    model = cls(blocks_args, global_params)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 815, in __init__
+    self._blocks.append(MBConvBlock(block_args, self._global_params, image_size=image_size))
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 699, in __init__
+    self._se_reduce = Conv2d(in_channels=oup, out_channels=num_squeezed_channels, kernel_size=1)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 273, in __init__
+    self.static_padding = nn.Identity()
+AttributeError: 'module' object has no attribute 'Identity'

@@ -1,0 +1,53 @@
+==========================================
+SLURM_CLUSTER_NAME = param-shivay
+SLURM_JOB_ACCOUNT = comp_sci_engg
+SLURM_JOB_ID = 649139
+SLURM_JOB_NAME = SISR_1
+SLURM_JOB_NODELIST = gpu009
+SLURM_JOB_USER = ssrivastava.cse18.iitbhu
+SLURM_JOB_UID = 5516
+SLURM_JOB_PARTITION = gpu
+SLURM_TASK_PID = 15801
+SLURM_SUBMIT_DIR = /scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model
+SLURM_CPUS_ON_NODE = 32
+SLURM_NTASKS = 32
+SLURM_TASK_PID = 15801
+==========================================
+Fri Jul 23 18:31:32 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.67       Driver Version: 418.67       CUDA Version: ERR!     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla V100-PCIE...  Off  | 00000000:5E:00.0 Off |                    0 |
+| N/A   41C    P0    37W / 250W |      0MiB / 16130MiB |      5%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+The following have been reloaded with a version change:
+  1) cuda/9.0 => cuda/10.0
+
+Fri Jul 23 18:31:35 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.67       Driver Version: 418.67       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla V100-PCIE...  Off  | 00000000:5E:00.0 Off |                    0 |
+| N/A   41C    P0    37W / 250W |      0MiB / 16130MiB |      3%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+

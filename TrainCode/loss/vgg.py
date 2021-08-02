@@ -10,11 +10,17 @@ class VGG(nn.Module):
     def __init__(self, conv_index, rgb_range=1):
         super(VGG, self).__init__()
         vgg_features = models.vgg19(pretrained=True).features
+        
         modules = [m for m in vgg_features]
-        if conv_index == '22':
-            self.vgg = nn.Sequential(*modules[:8])
-        elif conv_index == '54':
-            self.vgg = nn.Sequential(*modules[:35])
+        
+        # if conv_index == '22':
+        #     self.vgg = nn.Sequential(*modules[:8])
+        # elif conv_index == '54':
+        #     self.vgg = nn.Sequential(*modules[:35])
+
+        self.vgg = nn.Sequential(*modules[:35])
+
+        
 
         vgg_mean = (0.485, 0.456, 0.406)
         vgg_std = (0.229 * rgb_range, 0.224 * rgb_range, 0.225 * rgb_range)

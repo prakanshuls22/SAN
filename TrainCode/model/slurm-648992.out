@@ -1,0 +1,31 @@
+==========================================
+SLURM_CLUSTER_NAME = param-shivay
+SLURM_JOB_ACCOUNT = comp_sci_engg
+SLURM_JOB_ID = 648992
+SLURM_JOB_NAME = SISR_1
+SLURM_JOB_NODELIST = gpu009
+SLURM_JOB_USER = ssrivastava.cse18.iitbhu
+SLURM_JOB_UID = 5516
+SLURM_JOB_PARTITION = gpu
+SLURM_TASK_PID = 102086
+SLURM_SUBMIT_DIR = /scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model
+SLURM_CPUS_ON_NODE = 32
+SLURM_NTASKS = 32
+SLURM_TASK_PID = 102086
+==========================================
+Preparing seperated binary files
+Making model...
+Traceback (most recent call last):
+  File "main.py", line 14, in <module>
+    model = model.Model(args, checkpoint)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/__init__.py", line 27, in __init__
+    self.model = module.make_model(args).to(self.device)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 38, in make_model
+    return ENSR(args)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 1057, in __init__
+    self.Enet = EfficientNet.from_name('efficientnet-b1')
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 962, in from_name
+    model = cls(blocks_args, global_params)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model/ensr.py", line 782, in __init__
+    super().__init__()
+TypeError: super() takes at least 1 argument (0 given)

@@ -1,0 +1,28 @@
+==========================================
+SLURM_CLUSTER_NAME = param-shivay
+SLURM_JOB_ACCOUNT = comp_sci_engg
+SLURM_JOB_ID = 648078
+SLURM_JOB_NAME = SISR_1
+SLURM_JOB_NODELIST = gpu009
+SLURM_JOB_USER = ssrivastava.cse18.iitbhu
+SLURM_JOB_UID = 5516
+SLURM_JOB_PARTITION = gpu
+SLURM_TASK_PID = 21052
+SLURM_SUBMIT_DIR = /scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/model
+SLURM_CPUS_ON_NODE = 32
+SLURM_NTASKS = 32
+SLURM_TASK_PID = 21052
+==========================================
+Preparing seperated binary files
+Traceback (most recent call last):
+  File "main.py", line 13, in <module>
+    loader = data.Data(args)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/data/__init__.py", line 31, in __init__
+    testset = getattr(module_test, 'Benchmark')(args, train=False)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/data/benchmark.py", line 14, in __init__
+    super(Benchmark, self).__init__(args, train, benchmark=True)
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/data/srdata.py", line 29, in __init__
+    self.images_hr, self.images_lr = self._scan()
+  File "/scratch/ssrivastava.cse18.iitbhu/SAN/TrainCode/data/benchmark.py", line 19, in _scan
+    for entry in os.scandir(self.dir_hr):
+AttributeError: 'module' object has no attribute 'scandir'
